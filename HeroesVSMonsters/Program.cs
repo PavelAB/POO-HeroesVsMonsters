@@ -13,14 +13,37 @@ namespace HeroesVSMonsters
             Monster monster = new("firstMonster");
             Monster monster2 = new("secondMonster");
 
+            foreach ((Item key, int value) in monster.Inventory)
+            {
+                Console.WriteLine($"{key.Name} : {value}");
+            }
+            foreach ((Item key, int value) in monster2.Inventory)
+            {
+                Console.WriteLine($"{key.Name} : {value}");
+            }
+            Console.WriteLine("Hero");
 
-            game.Battle(hero, monster);
+            foreach ((Item key, int value) in hero.Inventory)
+            {
+                Console.WriteLine($"{key.Name} : {value}");
+            }
+
+
+
+
+            game.Battle(hero, monster, monster2);
+            //game.Battle(hero, monster2);
 
             Console.WriteLine($"Hero {hero.Name} : {hero.Health}");
             Console.WriteLine($"Monster {monster.Name} : {monster.Health}");
             Console.WriteLine($"Monster {monster2.Name} : {monster2.Health}");
 
+            Console.WriteLine("Hero After");
 
+            foreach ((Item key, int value) in hero.Inventory)
+            {
+                Console.WriteLine($"{key.Name} : {value}");
+            }
         }
     }
 }

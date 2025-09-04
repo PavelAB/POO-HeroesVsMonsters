@@ -1,4 +1,5 @@
-﻿using POO_Course.utils;
+﻿using HeroesVSMonsters.Models.Items;
+using POO_Course.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,26 +19,33 @@ namespace HeroesVSMonsters.Models
             Endurance = 0;
             Force = 1;
             Health = 10 + GetModifier(Endurance) + 100;
-            Inventory = new List<Item>{ new Item("Gold", Dice.Roll()), new Item("Leather", Dice.Roll(4)) };
+            Inventory = new Dictionary<Item, int> { 
+                { new Gold(), Dice.Roll() }, 
+                { new Leather(), Dice.Roll(4) } 
+            };
         }
 
 
         public event AttackHeroEvent AttackHero;
-        public override void Attack()
+        public void Attack()
         {
             AttackHero?.Invoke(this);
         }
-        public void GetDamage(Hero hero)
+        public void GetDamage(Hero hero, Monster monster)
         {
-            double damage = Dice.Roll(4) + GetModifier(hero.Force);
-            Health -= damage;
+            if(this.Name == monster.Name)
+            {
+                double damage = Dice.Roll(4) + GetModifier(hero.Force);
+                Health -= damage;
 
 
-            if (Health <= 0)
-                IsAlive = false;
+                if (Health <= 0)
+                    IsAlive = false;
 
-            if (IsAlive)
-                Attack();
+                if (IsAlive)
+                    Attack();
+            }
+            
 
         }
 

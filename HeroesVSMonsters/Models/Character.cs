@@ -15,7 +15,7 @@ namespace HeroesVSMonsters.Models
         private double _endurance;
         private double _force;
         private double _health;
-        private List<Item> _inventory= new ();
+        private Dictionary<Item, int> _inventory = new ();
 
         public double Endurance
         {
@@ -33,7 +33,7 @@ namespace HeroesVSMonsters.Models
             set { _health = value; }
         }
 
-        public List<Item> Inventory
+        public Dictionary<Item, int> Inventory
         { 
             get { return _inventory; }
             set { _inventory = value; } 
@@ -51,7 +51,7 @@ namespace HeroesVSMonsters.Models
             return 2d;
         }
 
-        public abstract void Attack();
+        //public abstract void Attack(Monster monster);
 
 
 
