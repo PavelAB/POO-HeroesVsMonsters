@@ -36,7 +36,6 @@ namespace HeroesVSMonsters.Models
             double damage = Dice.Roll(4) + GetModifier(monster.Force);
             Health -= damage;
 
-            Console.WriteLine($"Hero health {Health}");
 
             if(Health <= 0)
                 IsAlive = false;

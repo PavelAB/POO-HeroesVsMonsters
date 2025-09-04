@@ -8,10 +8,7 @@ namespace HeroesVSMonsters.Models
 {
     internal class Game
     {
-
-
-
-        public void Battle(Hero hero, Monster monster)
+        public bool Battle(Hero hero, Monster monster)
         {
             hero.AttackMonster += monster.GetDamage;
             monster.AttackHero += hero.GetDamage;
@@ -21,6 +18,22 @@ namespace HeroesVSMonsters.Models
 
             monster.AttackHero -= hero.GetDamage;
             hero.AttackMonster -= monster.GetDamage;
+
+            if(hero.Health <= 0 || hero.IsAlive == false)
+            {
+
+
+                return false;
+            }
+            else if (hero.Health > 0){
+
+
+                return true;
+            }
+            else
+            {
+                return false; // throw exception
+            }
         }
     }
 }

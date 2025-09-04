@@ -13,6 +13,7 @@ namespace HeroesVSMonsters
             Monster monster = new("firstMonster");
             Monster monster2 = new("secondMonster");
 
+
             game.Battle(hero, monster);
 
             Console.WriteLine($"Hero {hero.Name} : {hero.Health}");

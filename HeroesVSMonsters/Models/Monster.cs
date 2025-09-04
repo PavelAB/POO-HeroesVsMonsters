@@ -18,6 +18,7 @@ namespace HeroesVSMonsters.Models
             Endurance = 0;
             Force = 1;
             Health = 10 + GetModifier(Endurance) + 100;
+            Inventory = new List<Item>{ new Item("Gold", Dice.Roll()), new Item("Leather", Dice.Roll(4)) };
         }
 
 
@@ -30,8 +31,6 @@ namespace HeroesVSMonsters.Models
         {
             double damage = Dice.Roll(4) + GetModifier(hero.Force);
             Health -= damage;
-
-            Console.WriteLine($"Monster health {Health}");
 
 
             if (Health <= 0)

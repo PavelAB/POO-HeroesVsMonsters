@@ -15,6 +15,7 @@ namespace HeroesVSMonsters.Models
         private double _endurance;
         private double _force;
         private double _health;
+        private List<Item> _inventory= new ();
 
         public double Endurance
         {
@@ -30,6 +31,12 @@ namespace HeroesVSMonsters.Models
         {
             get { return _health; }
             set { _health = value; }
+        }
+
+        public List<Item> Inventory
+        { 
+            get { return _inventory; }
+            set { _inventory = value; } 
         }
 
 
