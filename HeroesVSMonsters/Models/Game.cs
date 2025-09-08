@@ -8,19 +8,19 @@ namespace HeroesVSMonsters.Models
 {
     internal class Game
     {
-        public bool Battle(Hero hero, Monster monster, Monster monster2)
+        public bool Battle(Hero hero, Monster monster)
         {
 
 
             hero.AttackMonster += monster.GetDamage;
-            hero.AttackMonster += monster2.GetDamage;
+            //hero.AttackMonster += monster2.GetDamage;
             monster.AttackHero += hero.GetDamage;
-            monster2.AttackHero += hero.GetDamage;
+            //monster2.AttackHero += hero.GetDamage;
 
 
             hero.Attack(monster);
-            hero.Attack(monster2);
-            Console.WriteLine($"Monster {monster2.Name} : {monster2.Health}");
+            //hero.Attack(monster2);
+            //Console.WriteLine($"Monster {monster2.Name} : {monster2.Health}");
 
 
             monster.AttackHero -= hero.GetDamage;
@@ -35,7 +35,8 @@ namespace HeroesVSMonsters.Models
             else if (hero.Health > 0){
 
                 hero.GetLoot(monster);
-                hero.GetLoot(monster2);
+                hero.NextLevel();
+                //hero.GetLoot(monster2);
                 return true;
             }
             else

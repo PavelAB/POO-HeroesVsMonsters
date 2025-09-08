@@ -12,20 +12,23 @@ namespace HeroesVSMonsters.Models
     internal class Hero : Character
     {
 
-        const int NUMBER_BEST_OF_ROLL_STATS = 3;
-        const int ROLL_NUMBER_OF_DICES_STATS = 4;
+        
+
+        private int _level;
+
+        public int Level
+        {
+            get { return _level; }
+            set { _level = value; }
+        }
 
         public event AttackMonsterEvent AttackMonster = null;
 
 
-        public Hero(string Name)
-        {
-            this.Name = Name;
-            Endurance = Dice.SumOfDices(Dice.RollInt(ROLL_NUMBER_OF_DICES_STATS), NUMBER_BEST_OF_ROLL_STATS);
-            Force = Dice.SumOfDices(Dice.RollInt(ROLL_NUMBER_OF_DICES_STATS), NUMBER_BEST_OF_ROLL_STATS);
-            Health = Endurance + GetModifier(Endurance) + 300;
+        public Hero(string Name) : base(Name,0,0, 0)
+        { 
+            Level = 0;
         }
-
 
 
         public void Attack(Monster monster)
@@ -63,6 +66,20 @@ namespace HeroesVSMonsters.Models
                 }
             }
         }
+
+        public void NextLevel()
+        {
+            int increaseProps = Dice.Roll(2);
+
+            if (increaseProps == 1)
+                Endurance += 1;
+            else if (increaseProps == 2)
+                Force += 1;
+
+            Level += 1;
+            ResetHealth();
+        }
+        
         
     }
 }

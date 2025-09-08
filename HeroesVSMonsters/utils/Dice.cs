@@ -16,12 +16,12 @@ namespace POO_Course.utils
         public static int Roll()
         {
             Random rnd = new Random();
-            return rnd.Next(Minimum, Maximum);
+            return rnd.Next(Minimum, Maximum + 1);
         }
         public static int Roll(int max) 
         {
             Random rnd = new Random();
-            return rnd.Next(1, Maximum);
+            return rnd.Next(1, max + 1);
         }
         public static int[] RollInt(int number)
         {

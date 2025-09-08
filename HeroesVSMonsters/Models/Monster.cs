@@ -13,12 +13,8 @@ namespace HeroesVSMonsters.Models
     {
 
 
-        public Monster(string name)
+        public Monster(string name): base(name)
         {
-            Name = name;
-            Endurance = 0;
-            Force = 1;
-            Health = 10 + GetModifier(Endurance) + 100;
             Inventory = new Dictionary<Item, int> { 
                 { new Gold(), Dice.Roll() }, 
                 { new Leather(), Dice.Roll(4) } 
