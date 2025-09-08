@@ -13,7 +13,7 @@ namespace HeroesVSMonsters.Models
     {
 
 
-        public Monster(string name): base(name)
+        public Monster(string name): base(name, "M")
         {
             Inventory = new Dictionary<Item, int> { 
                 { new Gold(), Dice.Roll() }, 

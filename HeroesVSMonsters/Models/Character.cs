@@ -19,7 +19,8 @@ namespace HeroesVSMonsters.Models
         private double _endurance;
         private double _force;
         private double _health;
-        
+
+        private string _icon;
         private int _positionX;
         private int _positionY;
         private Dictionary<Item, int> _inventory = new ();
@@ -48,6 +49,11 @@ namespace HeroesVSMonsters.Models
             get { return _positionY; }
             set { _positionY = value; }
         }
+        public string Icon
+        {
+            get { return _icon; }
+            set { _icon = value; }
+        }
 
         public Dictionary<Item, int> Inventory
         { 
@@ -56,14 +62,19 @@ namespace HeroesVSMonsters.Models
         }
         public Character(
             string name, 
+            string icon,
             double enduranceModifier = 0,
             double forceModifier = 0,
             double healthModifier = 0 )
             {
                 Name = name;
+                Icon = icon;
                 Endurance = Dice.SumOfDices(Dice.RollInt(ROLL_NUMBER_OF_DICES_STATS), NUMBER_BEST_OF_ROLL_STATS) + enduranceModifier;
                 Force = Dice.SumOfDices(Dice.RollInt(ROLL_NUMBER_OF_DICES_STATS), NUMBER_BEST_OF_ROLL_STATS) + forceModifier;
                 Health = Endurance + GetModifier(Endurance) + healthModifier;
+                PositionX = Dice.Roll(15);
+                PositionY = Dice.Roll(15);
+
         }
 
         public void ResetHealth()

@@ -8,6 +8,8 @@ namespace HeroesVSMonsters.Models
 {
     internal class Game
     {
+        
+
         public bool Battle(Hero hero, Monster monster)
         {
 
@@ -42,6 +44,15 @@ namespace HeroesVSMonsters.Models
             else
             {
                 return false; // throw exception
+            }
+        }
+
+        public void GetPositions(List<Character> characters, Board board)
+        {
+            foreach (Character character in characters)
+            {
+                if(character is not null)
+                    board.GameBoard[character.PositionX, character.PositionY] = character.Icon;
             }
         }
     }

@@ -8,13 +8,18 @@ namespace HeroesVSMonsters
         {
             //Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine("Hello, World!");
+            List<Character> characters = new List<Character>();
 
             Game game = new Game();
+            Board gameBoard = new Board();
             Hero hero = new("bestHero");
+            characters.Add(hero);
             Monster monster = new("firstMonster");
             Console.WriteLine(monster.ToString());
+            characters.Add(monster);
             Monster monster2 = new("secondMonster");
             Console.WriteLine(monster2.ToString());
+            characters.Add(monster2);
             
 
             Console.WriteLine($"{hero.ToString()}");
@@ -54,6 +59,10 @@ namespace HeroesVSMonsters
             {
                 Console.WriteLine($"{key.Name} : {value}");
             }
+
+            gameBoard.displayBoard();
+            game.GetPositions(characters, gameBoard);
+            gameBoard.displayBoard();
 
         }
     }
