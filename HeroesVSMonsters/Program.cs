@@ -1,4 +1,5 @@
 ﻿using HeroesVSMonsters.Models;
+using POO_Course.utils;
 
 namespace HeroesVSMonsters
 {
@@ -42,7 +43,6 @@ namespace HeroesVSMonsters
 
 
 
-
             //game.Battle(hero, monster, monster2);
             game.Battle(hero, monster);
             game.Battle(hero, monster2);
@@ -60,9 +60,20 @@ namespace HeroesVSMonsters
                 Console.WriteLine($"{key.Name} : {value}");
             }
 
-            gameBoard.displayBoard();
             game.GetPositions(characters, gameBoard);
+            int test = 0;
             gameBoard.displayBoard();
+            Console.WriteLine($"X: {hero.PositionX} Y: {hero.PositionY}");
+
+            while (test < 10)
+            {
+                Console.WriteLine($"Round: {test}");
+                Console.WriteLine($"X: {hero.PositionX} Y: {hero.PositionY}");
+                game.moveCharacter(game.moveDirectionPlayer(), hero, gameBoard);
+                
+                gameBoard.displayBoard();
+            }
+
 
         }
     }

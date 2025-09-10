@@ -72,8 +72,8 @@ namespace HeroesVSMonsters.Models
                 Endurance = Dice.SumOfDices(Dice.RollInt(ROLL_NUMBER_OF_DICES_STATS), NUMBER_BEST_OF_ROLL_STATS) + enduranceModifier;
                 Force = Dice.SumOfDices(Dice.RollInt(ROLL_NUMBER_OF_DICES_STATS), NUMBER_BEST_OF_ROLL_STATS) + forceModifier;
                 Health = Endurance + GetModifier(Endurance) + healthModifier;
-                PositionX = Dice.Roll(15);
-                PositionY = Dice.Roll(15);
+                PositionX = Dice.Roll(0, 14);
+                PositionY = Dice.Roll(0, 14);
 
         }
 
