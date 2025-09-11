@@ -25,7 +25,7 @@ namespace HeroesVSMonsters.Models
         public event AttackMonsterEvent AttackMonster = null;
 
 
-        public Hero(string Name) : base(Name, "H")
+        public Hero(string Name) : base(Name, "H",0,0,100)
         { 
             Level = 0;
         }

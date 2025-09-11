@@ -8,7 +8,7 @@ namespace HeroesVSMonsters.Models
 {
     internal class Board
     {
-        const int BOARD_LENGTH = 15;
+        public const int BOARD_LENGTH = 15;
 
         public string[,] GameBoard = new string[BOARD_LENGTH, BOARD_LENGTH];
 

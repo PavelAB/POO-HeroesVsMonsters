@@ -47,12 +47,17 @@ namespace HeroesVSMonsters.Models
             }
         }
 
-        public void GetPositions(List<Character> characters, Board board)
+        public void GetPositions(List<Character> characters,List<Monster> monsters, Board board)
         {
             foreach (Character character in characters)
             {
                 if(character is not null)
                     board.GameBoard[character.PositionY, character.PositionX] = character.Icon;
+            }
+            foreach (Monster monster in monsters)
+            {
+                if (monster is not null)
+                    board.GameBoard[monster.PositionY, monster.PositionX] = monster.Icon;
             }
         }
 
@@ -80,14 +85,14 @@ namespace HeroesVSMonsters.Models
         {
             int action = (choice == "g" || choice == "z") ? -1 : 1;
 
-            // gauche - OK
+            // gauche
             if (choice == "g" && character.PositionX == 0)
             {
                 board.GameBoard[character.PositionY, board.GameBoard.GetLength(1) + action] = character.Icon;
                 board.GameBoard[character.PositionY, character.PositionX] = "_";
                 character.PositionX = board.GameBoard.GetLength(1) + action;
             }
-            // droite - OK
+            // droite
             else if (choice == "d" && character.PositionX == board.GameBoard.GetLength(1) - 1)
             {
                 board.GameBoard[character.PositionY, 0] = character.Icon;
@@ -108,32 +113,44 @@ namespace HeroesVSMonsters.Models
                 board.GameBoard[character.PositionY, character.PositionX] = "_";
                 character.PositionY = board.GameBoard.GetLength(1) + action;
             }
-
-            //else if ((choice == "g" || choice == "d"))
-            //{
-            //    board.GameBoard[character.PositionX, character.PositionY + action] = character.Icon;
-            //    board.GameBoard[character.PositionX, character.PositionY] = "_";
-            //    character.PositionY = character.PositionY + action;
-            //}
-            // G,D - OK
             else if ((choice == "g" || choice == "d"))
             {
                 board.GameBoard[character.PositionY, character.PositionX + action] = character.Icon;
                 board.GameBoard[character.PositionY, character.PositionX] = "_";
                 character.PositionX = character.PositionX + action;
             }
-            //else if ((choice == "s" || choice == "z"))
-            //{
-            //    board.GameBoard[character.PositionX + action, character.PositionY] = character.Icon;
-            //    board.GameBoard[character.PositionX, character.PositionY] = "_";
-            //    character.PositionX = character.PositionX + action;
-            //}
             else if ((choice == "s" || choice == "z"))
             {
                 board.GameBoard[character.PositionY + action, character.PositionX] = character.Icon;
                 board.GameBoard[character.PositionY, character.PositionX] = "_";
                 character.PositionY = character.PositionY + action;
             }
+        }
+
+        public void IsBattle(Hero hero, List<Monster> monsters, Board board)
+        {
+            foreach(Monster monster in monsters)
+            {
+                if (    (hero.PositionX == monster.PositionX + 1 && hero.PositionY == monster.PositionY ) 
+                     || (hero.PositionX == monster.PositionX - 1 && hero.PositionY == monster.PositionY )
+                     || (hero.PositionY == monster.PositionY + 1 && hero.PositionX == monster.PositionX )
+                     || (hero.PositionY == monster.PositionY - 1 && hero.PositionX == monster.PositionX )
+                     || (hero.PositionY == 0 && monster.PositionY == 14 && hero.PositionX == monster.PositionX )
+                     || (hero.PositionY == 14 && monster.PositionY == 0 && hero.PositionX == monster.PositionX )
+                     || (hero.PositionX == 0 && monster.PositionX == 14 && hero.PositionY == monster.PositionY )
+                     || (hero.PositionX == 14 && monster.PositionX == 0 && hero.PositionY == monster.PositionY ))
+                {
+                    Battle(hero, monster);
+                    if(monster.Health <= 0)
+                    {
+                        board.GameBoard[monster.PositionY, monster.PositionX] = "_";
+                    }
+
+                }
+
+            }
+            monsters = monsters.Where(s => s.Health > 0).ToList();
+
         }
 
         
